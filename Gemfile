@@ -7,4 +7,8 @@ group :jekyll_plugins do
   gem 'jekyll-watch'
   gem 'kramdown'
   gem 'rouge'
+  gem "bigdecimal"
+  gem "csv"
+  gem "base64"
+  gem 'rexml'
 end

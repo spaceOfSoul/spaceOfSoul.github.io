@@ -1,12 +1,12 @@
-title: John Smith
+title: Changhyeon Yu
 description: My Personal Blog
-author: John Smith
+author: Changhyeon Yu
 logo: /hcz-jekyll-blog/static/img/avatar.png
-github: https://github.com/codeasashu
+github: https://github.com/spaceOfSoul
 about: Freelance developer
 
 baseurl: ""
-url: ""
+url: "https://spaceOfSoul.github.io"
 
 allowsearch: true
 

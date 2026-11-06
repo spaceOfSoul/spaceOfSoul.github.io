@@ -1,0 +1,360 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f5f0;
+  --ink: #1c1b18;
+  --muted: #68645b;
+  --line: #dcd8cd;
+  --accent: #a83e1a;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, "Apple SD Gothic Neo", "Malgun Gothic", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141310;
+    --ink: #ece9e1;
+    --muted: #a5a094;
+    --line: #34322b;
+    --accent: #f0916a;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 10vw, 6rem) 1.25rem 3rem;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1rem/1.75 var(--font);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 소개 */
+
+.intro {
+  margin-bottom: clamp(3rem, 9vw, 5rem);
+}
+
+.intro h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.75rem, 10vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.intro p {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.intro .links {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.section-label {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font: 400 0.875rem/1.5 var(--mono);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 1rem 0 0;
+  font-weight: 600;
+}
+
+/* 대표 프로젝트 */
+
+.feature {
+  margin-bottom: 3rem;
+}
+
+.feature img,
+figure img {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.feature-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.feature-title h3 {
+  margin: 0;
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.status {
+  color: var(--accent);
+  font: 0.8125rem/1.5 var(--mono);
+}
+
+.feature > p:not(.actions) {
+  margin: 0;
+  font-size: 1.0625rem;
+}
+
+/* 프로젝트 목록 */
+
+.projects {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0.25rem 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.project time {
+  color: var(--muted);
+  font: 0.875rem/2 var(--mono);
+}
+
+.project h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.project p {
+  margin: 0.25rem 0 0;
+}
+
+.project .actions {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+/* 이력 */
+
+.history {
+  margin-top: clamp(3.5rem, 10vw, 5.5rem);
+}
+
+.history h3 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.history .section-label + h3 {
+  margin-top: 0;
+}
+
+.log,
+.plain {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.log li {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 0 1rem;
+  padding: 0.375rem 0;
+}
+
+.plain li {
+  padding: 0.125rem 0;
+}
+
+.when {
+  color: var(--muted);
+  font: 0.8125rem/1.85 var(--mono);
+}
+
+.note {
+  display: block;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+details {
+  border-top: 1px solid var(--line);
+}
+
+.plain + details {
+  margin-top: 2rem;
+}
+
+details:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+summary {
+  padding: 0.75rem 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+summary:hover {
+  color: var(--accent);
+}
+
+details .log {
+  padding-bottom: 0.75rem;
+}
+
+/* 프로젝트 소개 페이지 */
+
+.back {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.project-head h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.summary {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.meta {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font: 0.875rem/1.5 var(--mono);
+}
+
+figure {
+  margin: 2.5rem 0;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.project-page section {
+  margin-top: 2.5rem;
+}
+
+.project-page section h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.project-page section p,
+.project-page section ul,
+.project-page section ol {
+  margin: 0;
+}
+
+.project-page section ul,
+.project-page section ol {
+  padding-left: 1.25rem;
+}
+
+.project-page section ol + p {
+  margin-top: 0.5rem;
+}
+
+code {
+  font: 0.875em var(--mono);
+}
+
+/* 404 */
+
+.not-found h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.not-found p {
+  margin: 0;
+}
+
+.not-found .section-label {
+  margin-bottom: 0.75rem;
+}
+
+.not-found .links {
+  margin-top: 1.25rem;
+}
+
+/* 공통 */
+
+footer {
+  margin-top: 4rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 34rem) {
+  .project,
+  .log li {
+    grid-template-columns: 1fr;
+  }
+
+  .project time,
+  .when {
+    line-height: 1.5;
+  }
+}

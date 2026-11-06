@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalScope - 유창현</title>
+  <meta name="description" content="GPIO, PWM, DAC 출력 신호를 가상 오실로스코프로 측정하는 동작을 모사하는 프로그램 SignalScope를 소개합니다.">
+  <link rel="canonical" href="https://spaceofsoul.github.io/projects/signalscope.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SignalScope">
+  <meta property="og:description" content="GPIO, PWM, DAC 출력 신호를 가상 오실로스코프로 측정하는 동작을 모사하는 프로그램입니다.">
+  <meta property="og:url" content="https://spaceofsoul.github.io/projects/signalscope.html">
+  <meta property="og:image" content="https://spaceofsoul.github.io/assets/img/signalscope.png">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+  <a class="back" href="../index.html">← 처음으로</a>
+
+  <main class="project-page">
+    <header class="project-head">
+      <h1>SignalScope</h1>
+      <p class="summary">GPIO, PWM, DAC 출력 신호를 가상 오실로스코프로 측정하는 동작을 모사하는 프로그램입니다.</p>
+      <p class="meta"><time datetime="2026-11">2026.11</time> · v1.0.0</p>
+      <p class="actions">
+        <a href="https://github.com/spaceOfSoul/SignalScope/releases/latest">내려받기</a>
+        <a href="https://github.com/spaceOfSoul/SignalScope">코드</a>
+      </p>
+    </header>
+
+    <figure>
+      <img src="../assets/img/signalscope.png" alt="SignalScope 기본 화면. 오실로스코프 창에 CH1의 1 kHz 파형과 CH2의 2 kHz, 듀티 25% 파형이 표시되어 있다." width="1440" height="800">
+      <figcaption>빠른 시작 예제를 실행한 화면</figcaption>
+    </figure>
+
+    <section>
+      <h2>소개</h2>
+      <p>출력 핀 6개(GPIO, PWM, DAC 각 2개)를 Lua 스크립트로 제어하고, 그 출력을 가상 오실로스코프로 측정합니다. 핀 설정, 스크립트, 오실로스코프가 웹 페이지 하나에서 각각의 창으로 동작합니다.</p>
+    </section>
+
+    <section>
+      <h2>실행 방법</h2>
+      <ol>
+        <li>릴리즈에서 <code>SignalScope.zip</code>을 내려받아 압축을 풉니다.</li>
+        <li><code>index.html</code>을 더블클릭해 브라우저로 엽니다.</li>
+        <li>빠른 시작 예제가 자동으로 실행되어 CH1, CH2 파형이 표시됩니다.</li>
+      </ol>
+      <p>Chrome과 Edge를 권장합니다. Firefox에서도 동작하지만 PC 폴더 연결 기능은 쓸 수 없습니다.</p>
+    </section>
+
+    <section>
+      <h2>주요 기능</h2>
+      <ul>
+        <li><strong>핀·프로브 설정:</strong> 출력 핀 최대 2개를 CH1, CH2에 연결하고, 핀별로 LPF/HPF 필터와 Enable/Disable을 설정</li>
+        <li><strong>Lua 스크립트:</strong> 보드 클럭과 명령어 사이클 설정, 시뮬레이션 일시정지, 0.1X부터 MAX까지 속도 조절</li>
+        <li><strong>오실로스코프:</strong> Auto/Normal/Single 트리거, Sample/Peak Detect/Average 획득, Zoom, 자동 측정, CSV 저장</li>
+        <li><strong>XY 모드:</strong> CH1을 X축, CH2를 Y축으로 표시하고 Line, Dot, Persistence 표시 지원</li>
+        <li><strong>파일·네트워크:</strong> 가상 파일 시스템, PC 폴더 연결, 스크립트에서 HTTP나 WebSocket으로 외부 데이터 수신</li>
+        <li><strong>예제와 문서:</strong> 예제 13개와 Lua API 문서 제공</li>
+      </ul>
+    </section>
+
+    <figure>
+      <img src="../assets/img/signalscope-xy.png" alt="SignalScope XY 모드 화면. 두 DAC 출력으로 그린 리사주 도형이 오실로스코프 창에 표시되어 있다." width="1440" height="800">
+      <figcaption>XY 모드로 리사주 도형 예제를 실행한 화면</figcaption>
+    </figure>
+  </main>
+
+  <footer>© 2026 유창현</footer>
+</body>
+</html>

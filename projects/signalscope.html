@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SignalScope - 유창현</title>
   <meta name="description" content="GPIO, PWM, DAC 출력 신호를 가상 오실로스코프로 측정하는 동작을 모사하는 프로그램 SignalScope를 소개합니다.">
+  <meta name="theme-color" content="#0a0d11">
   <link rel="canonical" href="https://spaceofsoul.github.io/projects/signalscope.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="SignalScope">
@@ -12,60 +13,126 @@
   <meta property="og:url" content="https://spaceofsoul.github.io/projects/signalscope.html">
   <meta property="og:image" content="https://spaceofsoul.github.io/assets/img/signalscope.png">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-  <a class="back" href="../index.html">← 처음으로</a>
+  <header class="band-scope project-hero">
+    <nav class="topbar wrap" aria-label="주요 메뉴">
+      <a class="brand" href="../index.html"><img src="../assets/favicon.svg" alt="" width="24" height="24">spaceOfSoul</a>
+      <div class="topnav">
+        <a href="../index.html#projects">프로젝트</a>
+        <a href="../index.html#history">이력</a>
+        <a href="https://github.com/spaceOfSoul">GitHub</a>
+      </div>
+    </nav>
 
-  <main class="project-page">
-    <header class="project-head">
-      <h1>SignalScope</h1>
-      <p class="summary">GPIO, PWM, DAC 출력 신호를 가상 오실로스코프로 측정하는 동작을 모사하는 프로그램입니다.</p>
-      <p class="meta"><time datetime="2026-11">2026.11</time> · v1.0.0</p>
-      <p class="actions">
-        <a href="https://github.com/spaceOfSoul/SignalScope/releases/latest">내려받기</a>
-        <a href="https://github.com/spaceOfSoul/SignalScope">코드</a>
-      </p>
-    </header>
+    <div class="project-hero-grid wrap">
+      <div>
+        <a class="back" href="../index.html#projects">← 프로젝트 목록</a>
+        <p class="kicker"><span class="pill">v1.0.0</span> <time datetime="2026-11">2026.11</time> <span>GPIO · PWM · DAC 계측 시뮬레이터</span></p>
+        <h1>SignalScope</h1>
+        <p class="summary">GPIO, PWM, DAC 출력 신호를 가상 오실로스코프로 측정하는 동작을 모사하는 프로그램입니다.</p>
+        <p class="actions">
+          <a class="button button-primary" href="https://spaceofsoul.github.io/SignalScope/">바로 실행</a>
+          <a class="button" href="https://github.com/spaceOfSoul/SignalScope/releases/latest">내려받기</a>
+          <a class="button" href="https://github.com/spaceOfSoul/SignalScope">코드</a>
+        </p>
+      </div>
+      <img class="hero-art" src="../assets/img/lissajous.svg" alt="" width="400" height="400">
+    </div>
+  </header>
 
-    <figure>
-      <img src="../assets/img/signalscope.png" alt="SignalScope 기본 화면. 오실로스코프 창에 CH1의 1 kHz 파형과 CH2의 2 kHz, 듀티 25% 파형이 표시되어 있다." width="1440" height="800">
+  <main class="wrap">
+    <figure class="shot shot-lift">
+      <img src="../assets/img/signalscope.png" alt="SignalScope 기본 화면. 오실로스코프 창에 CH1의 1 kHz 파형과 CH2의 2 kHz, 듀티 25% 파형이 표시되어 있다." width="1600" height="706">
       <figcaption>빠른 시작 예제를 실행한 화면</figcaption>
     </figure>
 
-    <section>
+    <section class="split">
       <h2>소개</h2>
-      <p>출력 핀 6개(GPIO, PWM, DAC 각 2개)를 Lua 스크립트로 제어하고, 그 출력을 가상 오실로스코프로 측정합니다. 핀 설정, 스크립트, 오실로스코프가 웹 페이지 하나에서 각각의 창으로 동작합니다.</p>
+      <p class="intro-text">출력 핀 6개(GPIO, PWM, DAC 각 2개)를 Lua 스크립트로 제어하고, 그 출력을 가상 오실로스코프로 측정합니다. 핀 설정, 스크립트, 오실로스코프가 웹 페이지 하나에서 각각의 창으로 동작합니다.</p>
     </section>
 
-    <section>
-      <h2>실행 방법</h2>
-      <ol>
-        <li>릴리즈에서 <code>SignalScope.zip</code>을 내려받아 압축을 풉니다.</li>
-        <li><code>index.html</code>을 더블클릭해 브라우저로 엽니다.</li>
-        <li>빠른 시작 예제가 자동으로 실행되어 CH1, CH2 파형이 표시됩니다.</li>
+    <section class="chain-panel">
+      <h2>신호 경로</h2>
+      <p>스크립트의 출력부터 스코프의 레코드까지 같은 Simulation Clock으로 동기화됩니다. 100 kHz PWM처럼 빠른 신호도 샘플 단위로 적분하지 않고 전환 시점을 해석적으로 계산합니다.</p>
+      <ol class="chain">
+        <li><strong>Lua 스크립트</strong><span>명령어·딜레이 시각</span></li>
+        <li><strong>보드 레지스터</strong><span>클럭 엣지에 정렬</span></li>
+        <li><strong>핀 필터</strong><span>RC LPF / HPF</span></li>
+        <li><strong>프로브</strong><span>1X / 10X</span></li>
+        <li><strong>커플링</strong><span>DC / AC / GND</span></li>
+        <li><strong>ADC</strong><span>8bit, 잡음 포함</span></li>
+        <li><strong>레코드</strong><span>Zoom·측정·CSV</span></li>
       </ol>
-      <p>Chrome과 Edge를 권장합니다. Firefox에서도 동작하지만 PC 폴더 연결 기능은 쓸 수 없습니다.</p>
     </section>
 
-    <section>
+    <section class="split">
       <h2>주요 기능</h2>
-      <ul>
-        <li><strong>핀·프로브 설정:</strong> 출력 핀 최대 2개를 CH1, CH2에 연결하고, 핀별로 LPF/HPF 필터와 Enable/Disable을 설정</li>
-        <li><strong>Lua 스크립트:</strong> 보드 클럭과 명령어 사이클 설정, 시뮬레이션 일시정지, 0.1X부터 MAX까지 속도 조절</li>
-        <li><strong>오실로스코프:</strong> Auto/Normal/Single 트리거, Sample/Peak Detect/Average 획득, Zoom, 자동 측정, CSV 저장</li>
-        <li><strong>XY 모드:</strong> CH1을 X축, CH2를 Y축으로 표시하고 Line, Dot, Persistence 표시 지원</li>
-        <li><strong>파일·네트워크:</strong> 가상 파일 시스템, PC 폴더 연결, 스크립트에서 HTTP나 WebSocket으로 외부 데이터 수신</li>
-        <li><strong>예제와 문서:</strong> 예제 13개와 Lua API 문서 제공</li>
-      </ul>
+      <div class="tiles">
+        <div class="tile">
+          <h3>핀·프로브 설정</h3>
+          <p>출력 핀 최대 2개를 CH1, CH2에 연결하고, 핀별로 LPF/HPF 필터와 Enable/Disable을 설정합니다.</p>
+        </div>
+        <div class="tile">
+          <h3>Lua 스크립트</h3>
+          <p>보드 클럭과 명령어 사이클을 설정하고, 시뮬레이션 일시정지와 0.1X부터 MAX까지 속도 조절을 지원합니다.</p>
+        </div>
+        <div class="tile">
+          <h3>오실로스코프</h3>
+          <p>Auto/Normal/Single 트리거, Sample/Peak Detect/Average 획득, Zoom, 자동 측정, CSV 저장을 제공합니다.</p>
+        </div>
+        <div class="tile">
+          <h3>XY 모드</h3>
+          <p>CH1을 X축, CH2를 Y축으로 표시하고 Line, Dot, Persistence 표시를 지원합니다.</p>
+        </div>
+        <div class="tile">
+          <h3>파일·네트워크</h3>
+          <p>가상 파일 시스템과 PC 폴더 연결을 지원합니다. 데이터 서버를 함께 실행하면 스크립트에서 HTTP나 WebSocket으로 외부 데이터를 받을 수 있습니다.</p>
+        </div>
+        <div class="tile">
+          <h3>예제와 문서</h3>
+          <p>예제 13개와 Lua API 문서를 제공합니다.</p>
+        </div>
+      </div>
     </section>
 
-    <figure>
-      <img src="../assets/img/signalscope-xy.png" alt="SignalScope XY 모드 화면. 두 DAC 출력으로 그린 리사주 도형이 오실로스코프 창에 표시되어 있다." width="1440" height="800">
+    <figure class="shot">
+      <img src="../assets/img/signalscope-xy.png" alt="SignalScope XY 모드 화면. 두 DAC 출력으로 그린 리사주 도형이 오실로스코프 창에 표시되어 있다." width="1600" height="706" loading="lazy">
       <figcaption>XY 모드로 리사주 도형 예제를 실행한 화면</figcaption>
     </figure>
+
+    <section class="split">
+      <h2>실행 방법</h2>
+      <div class="tiles">
+        <div class="tile run-card">
+          <h3>브라우저에서 바로 실행</h3>
+          <p>설치 없이 바로 열리고, 빠른 시작 예제가 자동으로 실행되어 CH1, CH2 파형이 표시됩니다. 정적 사이트로 호스팅하고 있어 일부 기능은 제한됩니다.</p>
+          <a class="button button-primary" href="https://spaceofsoul.github.io/SignalScope/">바로 실행</a>
+        </div>
+        <div class="tile run-card">
+          <h3>내려받아 실행</h3>
+          <p>전체 기능을 쓰려면 릴리즈 파일을 받아 PC에서 실행합니다.</p>
+          <ol>
+            <li><code>SignalScope.zip</code>을 내려받아 압축을 풉니다.</li>
+            <li><code>index.html</code>을 더블클릭해 브라우저로 엽니다.</li>
+          </ol>
+          <a class="button" href="https://github.com/spaceOfSoul/SignalScope/releases/latest">내려받기</a>
+        </div>
+        <p class="fine-print">Chrome과 Edge를 권장합니다. Firefox에서도 동작하지만 PC 폴더 연결 기능은 쓸 수 없습니다.</p>
+      </div>
+    </section>
+
+    <a class="next" href="9omoku.html"><small>다음 프로젝트</small><span>9omoku →</span></a>
   </main>
 
-  <footer>© 2026 유창현</footer>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 유창현</span>
+      <a href="https://github.com/spaceOfSoul">GitHub</a>
+    </div>
+  </footer>
 </body>
 </html>

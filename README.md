@@ -24,6 +24,8 @@ python -m http.server 8000
 
 `main` 브랜치에 push하면 사이트에 반영됩니다.
 
+글꼴 Pretendard는 jsDelivr에서 불러오며, 불러오지 못하면 시스템 글꼴로 표시됩니다.
+
 ## 파일 구성
 
 | 경로 | 내용 |
@@ -31,6 +33,6 @@ python -m http.server 8000
 | `index.html` | 소개, 프로젝트 목록, 이력 |
 | `projects/` | 프로젝트별 소개 페이지 |
 | `assets/style.css` | 전체 스타일 (밝은 테마와 어두운 테마 색상은 맨 위에 있음) |
-| `assets/img/` | 스크린샷 등 이미지 |
+| `assets/img/` | 스크린샷과 장식용 그래픽 |
 | `404.html` | 없는 주소로 접속했을 때 표시되는 페이지 |
 | `.nojekyll` | GitHub Pages의 Jekyll 빌드를 끄는 빈 파일 |

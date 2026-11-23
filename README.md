@@ -1,6 +1,6 @@
 # spaceOfSoul.github.io
 
-유창현의 프로젝트와 이력을 소개하는 개인 사이트입니다. 빌드 과정 없는 HTML과 CSS로 되어 있습니다.
+프로젝트와 이력을 소개하는 개인 사이트입니다. 빌드 과정 없는 HTML과 CSS로 되어 있습니다.
 
 주소: https://spaceofsoul.github.io/
 
